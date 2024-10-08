@@ -1,0 +1,343 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+	--white: #F5FDFD;
+	--black: #05080C;
+	--black-transparent: #00000026;
+	--dark-blue: #0D1B2A;
+	--blue: #66CED6;
+	--grey-blue: #C1DDDD;
+	--purple: #7D82B8;
+	--purple-grey: #D4D5E2;
+	--red: #C97064;
+	--red-grey: #DCC7C5;
+	
+	--bg: var(--white);
+	--colour: var(--black);
+	--accent: var(--grey-blue);
+	--primary: var(--blue);
+	--transition: .07s;
+	--shadow: 0 0 5px var(--black-transparent);
+}
+
+.upload{
+	--accent: var(--purple-grey);
+	--primary: var(--purple);
+}
+
+.ping{
+	--accent: var(--red-grey);
+	--primary: var(--red);
+}
+
+*{
+	padding: 0;
+	margin: 0;
+	border: 0;
+	-webkit-tap-highlight-color: #00000000;
+}
+
+*:focus-visible{
+	outline: 3px solid var(--accent);
+}
+
+::selection{
+	background-color: var(--accent);
+}
+
+body{
+	background-color: var(--bg);
+	color: var(--colour);
+	font-family: "Poppins", sans-serif;
+	overflow: hidden;
+}
+
+a{
+	color: var(--primary);
+}
+
+a:hover {
+	background-color: var(--accent);
+}
+
+h2{
+	color: var(--primary);
+	font-weight: 500;
+	font-size: 1.2rem;
+}
+
+.center{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+}
+
+
+.container{
+	padding: 2rem;
+	padding-bottom: 1.5rem;
+	border: 3px solid var(--colour);
+	border-radius: 3rem;
+	background-color: var(--bg);
+}
+
+.diagram {
+	display: flex;
+}
+
+.progress{
+	height: 300px;
+	width: 30px;
+	background-color: var(--accent);
+	border-radius: 3rem;
+	overflow: hidden;
+	display: inline-flex;
+	margin: 7px;
+	position: relative;
+	transition: var(--transition);
+}
+
+.progress .bar{
+	width: 100%;
+	background-color: var(--primary);
+	border-radius: 3rem;
+	position: absolute;
+	bottom: 0;
+	display: block;
+	left: 0;
+	height: calc(var(--h));
+	transition: .2s;
+	pointer-events: none;
+}
+
+button.progress:hover{
+	cursor: pointer;
+}
+
+button{
+	background-color: transparent;
+	cursor: pointer;
+	padding: .4rem .8rem;
+	border-radius: 3rem;
+	transition: var(--transition);
+	font-size: 1rem;
+}
+
+button:hover{
+	background-color: var(--accent);
+}
+
+button:active, a:active{
+	opacity: .7;
+}
+
+nav{
+	padding-bottom: 20px;
+	display: flex;
+}
+
+nav button{
+	margin: 0 2px;
+}
+
+nav button.active{
+	background-color: var(--primary);
+}
+
+nav div{
+	display: inline-flex;
+}
+
+nav .time{
+	flex-grow: 1;
+}
+
+.pingview{
+	display: flex;
+	justify-content: right;
+	align-items: center;
+	margin-top: .5rem;
+}
+
+.pingview span{
+	display: inline-block;
+	position: relative;
+}
+
+.pingview .infodot{
+	height: .6rem; 
+	width: .6rem;
+	background-color: var(--blue);
+	border-radius: 3rem;
+	margin-right: .2rem;
+}
+
+.pingview.offline .infodot{
+	background-color: var(--red);
+}
+
+.info{
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding: .5rem 1rem;
+	border-radius: 1rem;
+	background-color: var(--bg);
+	box-shadow: var(--shadow);
+	transition: opacity var(--transition) .4s;
+	pointer-events: none;
+	user-select: none;
+}
+
+.popupbg{
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-color: var(--black-transparent);
+}
+
+#popup{
+	opacity: 0;
+	pointer-events: none;
+	transition: var(--transition);
+}
+
+#popup.active{
+	opacity: 1;
+	pointer-events: all;
+}
+
+#popup .popup{
+	transform: scale(.9);
+	position: relative;
+	width: 35rem;
+	transition: var(--transition);
+	padding: 1rem;
+	display: grid;
+	gap: .5rem;
+	grid-template-columns: 1fr 1fr;
+}
+
+#popup.active .container{
+	transform: scale(1);
+}
+
+.popup .content{
+	padding: 1rem;
+}
+
+.popup .progress{
+	height: 40px;
+	width: 100%;
+	margin: 2px;
+}
+
+.popup .progress .bar{
+	height: 100%;
+	width: calc(var(--h));
+	display: flex;
+	align-items: center;
+	padding: 0 1rem;
+	overflow: hidden;
+}
+
+.popup .progress .bar.light{
+	background-color: var(--accent);
+}
+
+.popup .progress .bar span{
+	position: absolute;
+	top:4px;
+	font-size: .7rem;
+	width: 20rem;
+}
+
+.popup .progress .bar p{
+	margin-top: 12px;
+	width: 20rem;
+}
+
+.popup h2{
+	position: relative;
+	padding-top: 15px;
+}
+
+.popup h2 span{
+	font-size: .85rem;
+	position: absolute;
+	top: 0;
+}
+
+.popup nav{
+	padding: 2px;
+	position: absolute;
+	bottom: -2rem;
+	left: 2rem;
+	background-color: var(--bg);
+	border-radius: 3rem;
+	box-shadow: var(--shadow);
+	border: 2px solid;
+}
+
+.popup nav button{
+	height: 40px;
+	width: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+}
+
+.popup nav button svg{
+	height: 1.2rem;
+}
+
+.popup .mapsbg{
+	background-color: var(--accent);
+	border-radius: 2rem;
+	overflow: hidden;
+}
+
+.popup iframe{
+	width: 100%;
+	display: flex;
+	flex-grow: 1;
+	height: 100%;
+	min-height: 420px;
+}
+
+.popup .timestamp{
+	margin-bottom: 1rem;
+}
+
+.reaction svg{
+	color: var(--red);
+	width: 120px;
+	height: 120px;
+}
+
+.reaction{
+	animation: react 2s forwards;
+	position: absolute;
+	top: var(--t);
+	left: var(--l);
+}
+
+@keyframes react {
+	0%{
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	
+	50%{
+		opacity: 1;
+	}
+	
+	100%{
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+}
